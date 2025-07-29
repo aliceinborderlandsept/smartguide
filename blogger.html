@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SmartGuide helps you compare top retailers like Amazon, Walmart, and more to find the best shopping options.">
+  <meta name="keywords" content="retail comparison, online shopping, SmartGuide, Amazon, Walmart">
+  <meta name="robots" content="index, follow">
+  <title>SmartGuide - Compare Top Retailers</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.21.4/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Navigation Bar -->
+  <nav class="bg-blue-600 text-white p-4 sticky top-0 z-10">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">SmartGuide</h1>
+      <ul class="flex space-x-4">
+        <li><a href="#home" class="hover:underline">Home</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div id="root" class="container mx-auto p-4"></div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white p-4 mt-8">
+    <div class="container mx-auto">
+      <p>&copy; 2025 SmartGuide. All rights reserved.</p>
+      <p>Contact: <a href="mailto:support@smartguide.com" class="underline">support@smartguide.com</a></p>
+      <p>SmartGuide is a comparison platform to help users make informed shopping decisions.</p>
+    </div>
+  </footer>
+
+  <!-- Placeholder Privacy Policy Page -->
+  <div id="privacy" class="hidden container mx-auto p-4 bg-white my-4 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Privacy Policy</h2>
+    <p>At SmartGuide, we value your privacy. We collect minimal user data, such as browsing preferences, to improve your experience. We do not share your data with third parties without consent. For details, contact <a href="mailto:support@smartguide.com" class="underline">support@smartguide.com</a>.</p>
+  </div>
+
+  <!-- Placeholder Terms of Service Page -->
+  <div id="terms" class="hidden container mx-auto p-4 bg-white my-4 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">Terms of Service</h2>
+    <p>By using SmartGuide, you agree to use our platform for personal, non-commercial purposes. We provide accurate information but are not responsible for external retailer policies. For inquiries, contact <a href="mailto:support@smartguide.com" class="underline">support@smartguide.com</a>.</p>
+  </div>
+
+  <script type="text/babel">
+    const retailers = [
+      { name: "Amazon", category: "General Retail", description: "Online marketplace offering a vast selection of products from electronics to clothing." },
+      { name: "Walmart", category: "General Retail", description: "Large retail chain with groceries, electronics, and everyday essentials." },
+      { name: "Target", category: "General Retail", description: "Trendy retailer for apparel, home goods, and electronics." },
+      { name: "eBay", category: "Online Marketplace", description: "Global platform for buying and selling new and used goods." },
+      { name: "Best Buy", category: "Electronics", description: "Specialty retailer for consumer electronics and appliances." },
+      { name: "Costco", category: "Warehouse Club", description: "Membership-based warehouse offering bulk goods at low prices." },
+      { name: "Sam's Club", category: "Warehouse Club", description: "Bulk retailer for members, offering groceries and household items." },
+      { name: "Home Depot", category: "Home Improvement", description: "Leading retailer for tools, hardware, and home improvement products." },
+      { name: "Lowe's", category: "Home Improvement", description: "Home improvement store for appliances, tools, and decor." },
+      { name: "Wayfair", category: "Furniture", description: "Online retailer specializing in furniture and home decor." },
+      { name: "Overstock", category: "Furniture", description: "Online retailer for discounted furniture and home goods." },
+      { name: "AliExpress", category: "Online Marketplace", description: "Global platform offering affordable products from international sellers." },
+      { name: "SHEIN", category: "Fashion", description: "Fast-fashion retailer with trendy, budget-friendly apparel." },
+      { name: "Temu", category: "Online Marketplace", description: "Online platform for affordable, diverse products." },
+      { name: "Newegg", category: "Electronics", description: "Online retailer for computer hardware and consumer electronics." },
+      { name: "B&H Photo Video", category: "Electronics", description: "Specialty retailer for photography and video equipment." },
+      { name: "Apple Store", category: "Electronics", description: "Official retailer for Apple products, including iPhones and MacBooks." },
+      { name: "Microsoft Store", category: "Electronics", description: "Official retailer for Microsoft products and software." },
+      { name: "Nike", category: "Sportswear", description: "Global brand for athletic footwear, apparel, and accessories." },
+      { name: "Adidas", category: "Sportswear", description: "Leading sportswear brand for athletic and lifestyle products." },
+      { name: "Under Armour", category: "Sportswear", description: "Performance apparel and gear for athletes." },
+      { name: "ASOS", category: "Fashion", description: "Online retailer for global fashion brands and trendy styles." },
+      { name: "Zappos", category: "Footwear", description: "Online retailer specializing in shoes, clothing, and accessories." },
+      { name: "Macy's", category: "Department Store", description: "Department store offering fashion, home goods, and more." },
+      { name: "Nordstrom", category: "Department Store", description: "Upscale retailer for high-end fashion and accessories." },
+      { name: "Bloomingdale's", category: "Department Store", description: "Luxury department store for premium fashion and home goods." },
+      { name: "Kohl's", category: "Department Store", description: "Retailer for clothing, home goods, and accessories." },
+      { name: "JCPenney", category: "Department Store", description: "Department store with apparel, home products, and more." },
+      { name: "H&M", category: "Fashion", description: "Global fast-fashion retailer for trendy, affordable clothing." },
+      { name: "Forever 21", category: "Fashion", description: "Trendy fashion retailer for young adults." },
+      { name: "Boohoo", category: "Fashion", description: "Online fast-fashion retailer with bold, trendy styles." },
+      { name: "Fashion Nova", category: "Fashion", description: "Fast-fashion brand for bold, trendy clothing." },
+      { name: "Old Navy", category: "Fashion", description: "Affordable fashion retailer for the whole family." },
+      { name: "Gap", category: "Fashion", description: "Casual clothing and accessories for men, women, and kids." },
+      { name: "Banana Republic", category: "Fashion", description: "Upscale casual fashion for professional and everyday wear." },
+      { name: "Sephora", category: "Beauty", description: "Leading retailer for cosmetics, skincare, and beauty products." },
+      { name: "Ulta Beauty", category: "Beauty", description: "Beauty retailer for makeup, skincare, and haircare products." },
+      { name: "CVS", category: "Pharmacy", description: "Pharmacy and retail for health, wellness, and convenience items." },
+      { name: "Walgreens", category: "Pharmacy", description: "Pharmacy chain offering medications and everyday essentials." },
+      { name: "Rite Aid", category: "Pharmacy", description: "Pharmacy retailer for health and wellness products." },
+      { name: "GameStop", category: "Gaming", description: "Retailer for video games, electronics, and gaming accessories." },
+      { name: "Etsy", category: "Online Marketplace", description: "Marketplace for handmade, vintage, and unique goods." },
+      { name: "Revolve", category: "Fashion", description: "Online retailer for premium fashion brands and designer clothing." },
+      { name: "Abercrombie & Fitch", category: "Fashion", description: "Casual fashion retailer for young adults." },
+      { name: "American Eagle", category: "Fashion", description: "Youth-oriented retailer for casual clothing and accessories." },
+      { name: "Urban Outfitters", category: "Fashion", description: "Trendy retailer for bohemian and urban fashion." },
+      { name: "Hot Topic", category: "Fashion", description: "Retailer for pop culture and music-inspired apparel." },
+      { name: "Bed Bath & Beyond", category: "Home Goods", description: "Retailer for bedding, kitchenware, and home decor." },
+      { name: "IKEA", category: "Furniture", description: "Global retailer for affordable furniture and home decor." },
+      { name: "Chewy", category: "Pet Supplies", description: "Online retailer for pet food, supplies, and accessories." },
+      { name: "Petco", category: "Pet Supplies", description: "Retailer for pet products, services, and pet care." }
+    ];
+
+    function RetailCard({ retailer, isSelected, onToggle }) {
+      return (
+        <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => onToggle(retailer.name)}
+              className="mr-2"
+              aria-label={`Select ${retailer.name} for comparison`}
+            />
+            <div>
+              <h3 className="text-lg font-bold">{retailer.name}</h3>
+              <p className="text-sm text-gray-600">{retailer.category}</p>
+              <p className="text-sm">{retailer.description}</p>
+              <a
+                href={`https://www.${retailer.name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '')}.com`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline text-sm"
+              >
+                Visit {retailer.name}
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const [selectedRetailers, setSelectedRetailers] = React.useState([]);
+
+      const toggleRetailer = (name) => {
+        if (selectedRetailers.includes(name)) {
+          setSelectedRetailers(selectedRetailers.filter((r) => r !== name));
+        } else {
+          setSelectedRetailers([...selectedRetailers, name]);
+        }
+      };
+
+      const filteredRetailers = selectedRetailers.length
+        ? retailers.filter((r) => selectedRetailers.includes(r.name))
+        : retailers;
+
+      return (
+        <div id="home">
+          <h1 className="text-3xl font-bold text-center my-6">SmartGuide - Compare Top Retailers</h1>
+          <p className="text-center text-gray-600 mb-6">
+            Select retailers to compare and find the best shopping options for your needs.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filteredRetailers.map((retailer) => (
+              <RetailCard
+                key={retailer.name}
+                retailer={retailer}
+                isSelected={selectedRetailers.includes(retailer.name)}
+                onToggle={toggleRetailer}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
